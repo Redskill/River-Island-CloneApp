@@ -1,9 +1,13 @@
 package com.redskill.riverislandapp
 
+import android.content.Context
+import android.graphics.Color
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.redskill.riverislandapp.domain.Product
@@ -16,6 +20,19 @@ class MainActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.title="River Island"
+
+
+        val search_bar = findViewById<SearchView>(R.id.search_view_homepage)
+        search_bar.onActionViewExpanded()
+//        search_bar.isIconified = false
+        search_bar.queryHint = "I am looking for..."
+
+
+//        search_bar.setBackgroundColor(Color.LTGRAY)
+
+
+
         val TAG = "MyActivity"
         Log.d(TAG,"Inizio")
 
@@ -23,9 +40,9 @@ class MainActivity : AppCompatActivity()  {
         var list = fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
 
         Log.d(TAG,list)
-        val gson = Gson()
-        var itemType = object : TypeToken<List<Product>>(){}.type
-        var productList : List<Product> = gson.fromJson(list,itemType)
+//        val gson = Gson()
+//        var itemType = object : TypeToken<List<Product>>(){}.type
+//        var productList : List<Product> = gson.fromJson(list,itemType)
         Log.d(TAG,"Fine")
 
     }
