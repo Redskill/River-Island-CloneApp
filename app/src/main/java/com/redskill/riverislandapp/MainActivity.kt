@@ -8,9 +8,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.redskill.riverislandapp.domain.Product
+import com.redskill.riverislandapp.navbar.fragments.FavoriteFragment
+import com.redskill.riverislandapp.navbar.fragments.HomeFragment
+import com.redskill.riverislandapp.navbar.fragments.ShoppingFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.io.IOException
 
@@ -21,6 +26,21 @@ class MainActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_main)
 
         supportActionBar?.title="River Island"
+
+        val homeFragment = HomeFragment()
+        val favoriteFragment = FavoriteFragment()
+        val shoppingFragment = ShoppingFragment()
+
+        makeCurrentFragment(homeFragment)
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.ic_home -> makeCurrentFragment(homeFragment)
+                R.id.ic_favorite -> makeCurrentFragment(favoriteFragment)
+                R.id.ic_shopping -> makeCurrentFragment(shoppingFragment)
+            }
+            true
+        }
 
 
         val search_bar = findViewById<SearchView>(R.id.search_view_homepage)
@@ -73,6 +93,11 @@ class MainActivity : AppCompatActivity()  {
 
         return myString
     }
+    private fun makeCurrentFragment(fragment:Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper,fragment)
+            commit()
+        }
 
 }
 
