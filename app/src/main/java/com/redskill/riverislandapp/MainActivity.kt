@@ -46,10 +46,18 @@ class MainActivity : AppCompatActivity()  {
         for (item in productList) {
             allProducts.add(item)
         }
-        Log.d(TAG,allProducts[1].name)
+        Log.d(TAG,allProducts[11].name)
+        // Getting All Categories available
+        val categories = findAllProductCategories(allProducts)
+        var i = 0
+        var category = ""
+        for (i in 0..categories.size-1) {
+            category = categories[i]
+            Log.i(TAG,category)
+        }
 
     }
-    fun fetchJson(url: String)  {
+    private fun fetchJson(url: String)  {
 
         val TAG1 = "MyActivity"
         Log.d(TAG1,"Attempting to fetch Json")
@@ -87,6 +95,32 @@ class MainActivity : AppCompatActivity()  {
             replace(R.id.fl_wrapper,fragment)
             commit()
         }
-
+    private fun findAllProductCategories (list : ArrayList<ProductInfo>) : ArrayList<String> {
+        var categoryList = ArrayList<String>()
+        for (i in 0..list.size-1)  {
+            if (!categoryList.contains(list[i].category)) {
+                categoryList.add(list[i].category)
+            }
+        }
+        return categoryList
+    }
+    private fun filterProductsByCategory (list : ArrayList<ProductInfo>, category: String) : ArrayList<ProductInfo> {
+        var listOfItemsOfTheSameCategory = ArrayList<ProductInfo>()
+        for (i in 0.. list.size-1) {
+            if (list[i].category == category) {
+                listOfItemsOfTheSameCategory.add(list[i])
+            }
+        }
+        return listOfItemsOfTheSameCategory
+    }
+    private fun numberOfItemsInACategory (list: ArrayList<ProductInfo>, category: String ) : Int {
+        var numOfItems = 0
+        for (i in 0..list.size-1) {
+            if (list[i].category == category) {
+                numOfItems++
+            }
+        }
+        return numOfItems
+    }
 }
 
