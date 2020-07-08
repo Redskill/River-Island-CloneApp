@@ -1,25 +1,21 @@
 package com.redskill.riverislandapp
 
-import android.content.Context
-import android.graphics.Color
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.redskill.riverislandapp.domain.Product
+import com.redskill.riverislandapp.domain.ProductInfo
 import com.redskill.riverislandapp.navbar.fragments.FavoriteFragment
 import com.redskill.riverislandapp.navbar.fragments.HomeFragment
 import com.redskill.riverislandapp.navbar.fragments.ShoppingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.IOException
 
 class MainActivity : AppCompatActivity()  {
+    private val productList = arrayListOf<ProductInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,21 +40,20 @@ class MainActivity : AppCompatActivity()  {
 
 
 
-//        search_bar.onActionViewExpanded()
-
-
-
-//        search_bar.setBackgroundColor(Color.LTGRAY)
-
-
 
         val TAG = "MyActivity"
         Log.d(TAG,"Inizio")
 
-        val yourCollection = mutableListOf<Product>()
-        var list = fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
 
-        Log.d(TAG,list)
+        var list = fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
+        val productList2 : ArrayList<ProductInfo> = ArrayList()
+        for (item in productList) {
+            productList2.add(item)
+        }
+
+        Log.d(TAG,productList2[1].name)
+
+
 //        val gson = Gson()
 //        var itemType = object : TypeToken<List<Product>>(){}.type
 //        var productList : List<Product> = gson.fromJson(list,itemType)
@@ -66,7 +61,6 @@ class MainActivity : AppCompatActivity()  {
 
     }
     fun fetchJson(url: String) : String {
-        val oroductList = mutableListOf<Product>()
         var myString = "Empty"
         val TAG1 = "MyActivity"
         Log.d(TAG1,"Attempting to fetch Json")
@@ -80,6 +74,32 @@ class MainActivity : AppCompatActivity()  {
                 val body = response.body?.string()
                 myString = body.toString()
                 Log.d(TAG1,"Attempting to fetch Json 3")
+                val jsonObject = JSONObject(body)
+
+                Log.d(TAG1,"Attempting 4")
+                var jsonArray_productList:JSONArray= jsonObject.getJSONArray("Products")
+
+                Log.d(TAG1,"Attempting to fetch Json 5")
+
+                var i = 0;
+                var size = jsonArray_productList.length()
+                for (i in 0.. size-1) {
+
+                    var json_objectdetail:JSONObject= jsonArray_productList.getJSONObject(i)
+                    var productInfo = ProductInfo(json_objectdetail.getString("name"),
+                    json_objectdetail.getInt("prodid"),
+                    json_objectdetail.getInt("cost"),
+                    json_objectdetail.getString("category"))
+                    productList.add(productInfo)
+
+
+                }
+
+//                val gson = Gson()
+//                val list2 = object : TypeToken<List<Product>>(){}.type
+//                val realList = gson.fromJson<Product>(jsonArray_productList.toString(),list2)
+                Log.d(TAG1,"Attempting to fetch Json 6")
+
 
             }
 
@@ -88,7 +108,7 @@ class MainActivity : AppCompatActivity()  {
             }
         })
         Log.d(TAG1,"Attempting to fetch Json 5")
-        Thread.sleep(1000)
+        Thread.sleep(3000)
 
         return myString
     }

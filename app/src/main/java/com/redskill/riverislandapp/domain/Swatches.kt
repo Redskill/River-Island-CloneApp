@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Swatches (
 
-    @SerializedName("productId") val productId : Int?,
-    @SerializedName("image") val image : String?
+    @SerializedName("productId") val productId : Int,
+    @SerializedName("image") val image : String
 
 )

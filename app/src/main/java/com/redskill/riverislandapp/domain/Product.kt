@@ -23,7 +23,7 @@ data class Product(
     @SerializedName("promotionImage") val promotionImage : String,
     @SerializedName("mediaIcon") val mediaIcon : String,
     @SerializedName("colour") val colour : String,
-    @SerializedName("sizes") val sizes : Int,
+    @SerializedName("sizes") val sizes : String,
     @SerializedName("altImage") val altImage : String,
     @SerializedName("dateSort") val dateSort : Int,
     @SerializedName("allImages") val allImages : List<String>,
