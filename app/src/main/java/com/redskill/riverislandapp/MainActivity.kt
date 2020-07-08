@@ -43,10 +43,9 @@ class MainActivity : AppCompatActivity()  {
         }
 
 
-        val search_bar = findViewById<SearchView>(R.id.search_view_homepage)
-        search_bar.onActionViewExpanded()
-//        search_bar.isIconified = false
-        search_bar.queryHint = "I am looking for..."
+
+//        search_bar.onActionViewExpanded()
+
 
 
 //        search_bar.setBackgroundColor(Color.LTGRAY)

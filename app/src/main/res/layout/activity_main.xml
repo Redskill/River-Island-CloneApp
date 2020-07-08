@@ -6,24 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <FrameLayout
         android:id="@+id/fl_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="166dp"
-            android:layout_height="201dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_view_homepage"
-            app:srcCompat="@drawable/women" />
-    </FrameLayout>
+        android:layout_above="@+id/bottom_navigation"/>
         
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -36,76 +24,5 @@
             app:itemTextColor="#fff"
             app:menu="@menu/menu"/>
 
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="166dp"
-        android:layout_height="201dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="100dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/women" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="166dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="100dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/women" />
-
-    <SearchView
-        android:id="@+id/search_view_homepage"
-        android:layout_width="367dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:focusable="false"
-        android:inputType="text"
-        android:visibility="visible"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="166dp"
-        android:layout_height="202dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view_homepage"
-        app:srcCompat="@drawable/men" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="227dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/riverisland" />
 
 </RelativeLayout>
