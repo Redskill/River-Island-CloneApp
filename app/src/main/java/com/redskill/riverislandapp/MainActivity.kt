@@ -1,9 +1,12 @@
 package com.redskill.riverislandapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.redskill.riverislandapp.activities.ProductCategorySelection
 import com.redskill.riverislandapp.domain.ProductInfo
 import com.redskill.riverislandapp.navbar.fragments.FavoriteFragment
 import com.redskill.riverislandapp.navbar.fragments.HomeFragment
@@ -49,7 +52,6 @@ class MainActivity : AppCompatActivity()  {
         Log.d(TAG,allProducts[11].name)
         // Getting All Categories available
         val categories = findAllProductCategories(allProducts)
-        var i = 0
         var category = ""
         for (i in 0..categories.size-1) {
             category = categories[i]
