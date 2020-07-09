@@ -1,51 +1,55 @@
 package com.redskill.riverislandapp.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
+import android.view.View
 import android.widget.ListView
-import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.redskill.riverislandapp.R
+import com.redskill.riverislandapp.adapters.CustomListView
 import com.redskill.riverislandapp.domain.Customer
 import com.redskill.riverislandapp.domain.ProductInfo
+import kotlinx.android.synthetic.main.activity_product_list.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
-class ProductCategorySelection : AppCompatActivity() {
-
+class ProductListActivity : AppCompatActivity() {
 
     private val productList = arrayListOf<ProductInfo>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_category_selection)
+        setContentView(R.layout.activity_product_list)
+
+
+
+
+        val chosen_category = intent.getStringExtra("CATEGORY_KEY")
 
         fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
 
         val Fabio = Customer("Fabio")
-        val categories : ArrayList<String> = Fabio.findAllProductCategories(productList)
+        val itemsFilteredByCategory : ArrayList<ProductInfo> = ArrayList()
+        Fabio.filterProductsByCategory(productList,itemsFilteredByCategory,"$chosen_category")
 
-        val category_list_view = findViewById<ListView>(R.id.category_listview)
+        val productListView = findViewById<ListView>(R.id.product_listview)
 
-        val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,categories)
-
-        category_list_view.adapter= arrayAdapter
+        product_listview.adapter = CustomListView(this,R.layout.listview_layout,itemsFilteredByCategory)
         
-        category_list_view.setOnItemClickListener { adapterView, view, i, l ->
-            val intent = Intent(this, ProductListActivity::class.java)
-            intent.putExtra("CATEGORY_KEY",adapterView.getItemAtPosition(i).toString())
-            startActivity(intent)
-
+        productListView.setOnItemClickListener { adapterView, view : View, position : Int, id:Long ->
+            if (position == 0) {
+                Toast.makeText(this,"Nice Choice!", Toast.LENGTH_LONG).show()
+            }
         }
 
 
-    }
 
+        // TO DO : Implement XML LAYOUT + CODE HERE
+    }
     private fun fetchJson(url: String)  {
 
         val TAG1 = "MyActivity"
@@ -79,5 +83,4 @@ class ProductCategorySelection : AppCompatActivity() {
         })
         Thread.sleep(2000)
     }
-
 }

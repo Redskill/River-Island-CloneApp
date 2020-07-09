@@ -14,14 +14,13 @@ data class Customer (val userName : String) : customerHelper {
         return categoryList
     }
 
-    override fun filterProductsByCategory(list: ArrayList<ProductInfo>, category: String): ArrayList<ProductInfo> {
-        var listOfItemsOfTheSameCategory = ArrayList<ProductInfo>()
+    override fun filterProductsByCategory(list: ArrayList<ProductInfo>, filteredList : ArrayList<ProductInfo>, category: String): ArrayList<ProductInfo> {
         for (i in 0.. list.size-1) {
             if (list[i].category == category) {
-                listOfItemsOfTheSameCategory.add(list[i])
+                filteredList.add(list[i])
             }
         }
-        return listOfItemsOfTheSameCategory
+        return filteredList
     }
     override fun numberOfItemsInACategory (list: ArrayList<ProductInfo>, category: String ) : Int {
         var numOfItems = 0
