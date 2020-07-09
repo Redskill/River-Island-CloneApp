@@ -1,4 +1,8 @@
 package com.redskill.riverislandapp.domain
 
-data class ProductInfo(var name: String,var prodid : Int, var price : Int, var category : String)
+data class ProductInfo(
+    val name: String,
+    val prodid : Int,
+    val price : Int,
+    val category : String)
 

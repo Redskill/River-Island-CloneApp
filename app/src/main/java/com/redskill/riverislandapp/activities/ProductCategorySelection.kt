@@ -79,5 +79,4 @@ class ProductCategorySelection : AppCompatActivity() {
         })
         Thread.sleep(2000)
     }
-
 }

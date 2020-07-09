@@ -19,8 +19,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val search_bar = view?.findViewById<SearchView>(R.id.search_bar)
-
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
