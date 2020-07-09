@@ -1,11 +1,13 @@
 package com.redskill.riverislandapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.redskill.riverislandapp.R
 import com.redskill.riverislandapp.adapters.CustomListView
@@ -39,16 +41,21 @@ class ProductListActivity : AppCompatActivity() {
         val productListView = findViewById<ListView>(R.id.product_listview)
 
         product_listview.adapter = CustomListView(this,R.layout.listview_layout,itemsFilteredByCategory)
+
+
+
         
         productListView.setOnItemClickListener { adapterView, view : View, position : Int, id:Long ->
-            if (position == 0) {
-                Toast.makeText(this,"Nice Choice!", Toast.LENGTH_LONG).show()
-            }
+
+            val intent = Intent(this, LargePictureActivity::class.java)
+            intent.putExtra("SELECTED_ITEM_PRODID",itemsFilteredByCategory[productListView.getItemIdAtPosition(position)
+                .toInt()].prodid.toString())
+            startActivity(intent)
         }
 
 
 
-        // TO DO : Implement XML LAYOUT + CODE HERE
+
     }
     private fun fetchJson(url: String)  {
 
