@@ -22,7 +22,7 @@ class ModelJsonData() : fetchingJsonHelper {
                 print("Failed to execute request")
             }
         })
-        Thread.sleep(2000)
+        Thread.sleep(500)
     }
 
     override fun fetchJsonProduct(url: String, productList: ArrayList<Product>) {
