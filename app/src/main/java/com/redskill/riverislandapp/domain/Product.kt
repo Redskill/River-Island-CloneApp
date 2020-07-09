@@ -19,7 +19,7 @@ data class Product(
     @SerializedName("wascostSEK") val wascostSEK : String,
     @SerializedName("costWEK") val costWEK : Int,
     @SerializedName("wascostWEK") val wascostWEK : String,
-    @SerializedName("prodid") val prodid : Int,
+    @SerializedName("prodid") val prodId : Int,
     @SerializedName("promotionImage") val promotionImage : String,
     @SerializedName("mediaIcon") val mediaIcon : String,
     @SerializedName("colour") val colour : String,

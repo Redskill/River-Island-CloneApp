@@ -1,12 +1,10 @@
 package com.redskill.riverislandapp.domain
 
-import com.redskill.riverislandapp.utils.customerHelper
+class Customer {
 
-data class Customer (val userName : String) : customerHelper {
-
-    override fun findAllProductCategories(list: ArrayList<ProductInfo>): ArrayList<String> {
+    fun findAllProductCategories(list: ArrayList<ProductInfo>): ArrayList<String> {
         var categoryList = ArrayList<String>()
-        for (i in 0..list.size - 1) {
+        for (i in 0 until list.size) {
             if (!categoryList.contains(list[i].category)) {
                 categoryList.add(list[i].category)
             }
@@ -14,17 +12,19 @@ data class Customer (val userName : String) : customerHelper {
         return categoryList
     }
 
-    override fun filterProductsByCategory(list: ArrayList<ProductInfo>, filteredList : ArrayList<ProductInfo>, category: String): ArrayList<ProductInfo> {
-        for (i in 0.. list.size-1) {
+    fun filterProductsByCategory(list: ArrayList<ProductInfo>, category: String): ArrayList<ProductInfo> {
+        val filteredList = ArrayList<ProductInfo>()
+        for (i in 0 until list.size) {
             if (list[i].category == category) {
                 filteredList.add(list[i])
             }
         }
         return filteredList
     }
-    override fun numberOfItemsInACategory (list: ArrayList<ProductInfo>, category: String ) : Int {
+
+    fun numberOfItemsInACategory (list: ArrayList<ProductInfo>, category: String ) : Int {
         var numOfItems = 0
-        for (i in 0..list.size-1) {
+        for (i in 0 until list.size) {
             if (list[i].category == category) {
                 numOfItems++
             }

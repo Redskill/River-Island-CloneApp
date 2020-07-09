@@ -2,7 +2,7 @@ package com.redskill.riverislandapp.domain
 
 data class ProductInfo(
     val name: String,
-    val prodid : Int,
+    val prodId : Int,
     val price : Int,
     val category : String)
 

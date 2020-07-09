@@ -26,7 +26,7 @@ class CustomListView(context : Context,var resources : Int, var productList : Ar
         var mItem : ProductInfo = productList[position]
 
 
-        Picasso.get().load("http://riverisland.scene7.com/is/image/RiverIsland/${mItem.prodid}_main").into(imageView);
+        Picasso.get().load("http://riverisland.scene7.com/is/image/RiverIsland/${mItem.prodId}_main").into(imageView);
         productNameTextView.text = mItem.name
         costTextView.text = "£ " + mItem.price.toString()
 
