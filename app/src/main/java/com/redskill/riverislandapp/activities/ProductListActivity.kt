@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.ListView
 import com.redskill.riverislandapp.R
 import com.redskill.riverislandapp.adapters.CustomListView
-import com.redskill.riverislandapp.domain.Customer
-import com.redskill.riverislandapp.domain.ProductInfo
 import com.redskill.riverislandapp.utils.fetchJsonProductInfo
 import com.redskill.riverislandapp.utils.filterProductsByCategory
 import kotlinx.android.synthetic.main.activity_product_list.*
