@@ -9,6 +9,7 @@ import android.widget.ListView
 import android.widget.TextView
 import com.redskill.riverislandapp.R
 import com.redskill.riverislandapp.domain.Customer
+import com.redskill.riverislandapp.domain.ModelJsonData
 import com.redskill.riverislandapp.domain.ProductInfo
 import okhttp3.*
 import org.json.JSONArray
@@ -25,7 +26,9 @@ class ProductCategorySelection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_category_selection)
 
-        fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
+        val modelJsonData= ModelJsonData()
+        modelJsonData.fetchJsonProductInfo("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json",productList)
+
 
         val Fabio = Customer("Fabio")
         val categories : ArrayList<String> = Fabio.findAllProductCategories(productList)
@@ -42,41 +45,5 @@ class ProductCategorySelection : AppCompatActivity() {
             startActivity(intent)
 
         }
-
-
-    }
-
-    private fun fetchJson(url: String)  {
-
-        val TAG1 = "MyActivity"
-        Log.d(TAG1,"Attempting to fetch Json")
-
-        val request = Request.Builder().url(url).build()
-        val client = OkHttpClient()
-        client.newCall(request).enqueue(object: Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-
-                val jsonObject = JSONObject(body)
-                var jsonArray_productList: JSONArray = jsonObject.getJSONArray("Products")
-                var i = 0;
-                var size = jsonArray_productList.length()
-                for (i in 0.. size-1) {
-
-                    var json_objectdetail: JSONObject = jsonArray_productList.getJSONObject(i)
-                    var productInfo = ProductInfo(json_objectdetail.getString("name"),
-                        json_objectdetail.getInt("prodid"),
-                        json_objectdetail.getInt("cost"),
-                        json_objectdetail.getString("category"))
-                    productList.add(productInfo)
-                }
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
-                print("Failed to execute request")
-            }
-        })
-        Thread.sleep(2000)
     }
 }

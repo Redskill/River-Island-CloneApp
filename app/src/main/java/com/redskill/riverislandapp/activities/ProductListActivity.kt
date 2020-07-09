@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.redskill.riverislandapp.R
 import com.redskill.riverislandapp.adapters.CustomListView
 import com.redskill.riverislandapp.domain.Customer
+import com.redskill.riverislandapp.domain.ModelJsonData
 import com.redskill.riverislandapp.domain.ProductInfo
 import kotlinx.android.synthetic.main.activity_product_list.*
 import okhttp3.*
@@ -27,12 +28,10 @@ class ProductListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
-
-
-
         val chosen_category = intent.getStringExtra("CATEGORY_KEY")
 
-        fetchJson("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
+        val modelJsonData= ModelJsonData()
+        modelJsonData.fetchJsonProductInfo("https://static-r2.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json",productList)
 
         val Fabio = Customer("Fabio")
         val itemsFilteredByCategory : ArrayList<ProductInfo> = ArrayList()
@@ -42,9 +41,6 @@ class ProductListActivity : AppCompatActivity() {
 
         product_listview.adapter = CustomListView(this,R.layout.listview_layout,itemsFilteredByCategory)
 
-
-
-        
         productListView.setOnItemClickListener { adapterView, view : View, position : Int, id:Long ->
 
             val intent = Intent(this, LargePictureActivity::class.java)
@@ -52,42 +48,5 @@ class ProductListActivity : AppCompatActivity() {
                 .toInt()].prodid.toString())
             startActivity(intent)
         }
-
-
-
-
-    }
-    private fun fetchJson(url: String)  {
-
-        val TAG1 = "MyActivity"
-        Log.d(TAG1,"Attempting to fetch Json")
-
-        val request = Request.Builder().url(url).build()
-        val client = OkHttpClient()
-        client.newCall(request).enqueue(object: Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-
-                val jsonObject = JSONObject(body)
-                var jsonArray_productList: JSONArray = jsonObject.getJSONArray("Products")
-                var i = 0;
-                var size = jsonArray_productList.length()
-                for (i in 0.. size-1) {
-
-                    var json_objectdetail: JSONObject = jsonArray_productList.getJSONObject(i)
-                    var productInfo = ProductInfo(json_objectdetail.getString("name"),
-                        json_objectdetail.getInt("prodid"),
-                        json_objectdetail.getInt("cost"),
-                        json_objectdetail.getString("category"))
-                    productList.add(productInfo)
-                }
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
-                print("Failed to execute request")
-            }
-        })
-        Thread.sleep(2000)
     }
 }
