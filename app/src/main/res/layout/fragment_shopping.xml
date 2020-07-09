@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_below="@id/river_edi_textview"
             android:text="SHOP NOW" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:text="Our Stores"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/riverLondon"
+            android:layout_width="match_parent"
+            android:layout_height="181dp"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/textView"
+            android:src="@drawable/riverilondon" />
+
+        <TextView
+            android:id="@+id/riverLondon_textView"
+            android:layout_width="183dp"
+            android:layout_height="26dp"
+            android:layout_below="@id/riverLondon"
+            android:text="London"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <ImageView
+            android:id="@+id/river_Edi_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="181dp"
+            android:layout_below="@id/riverLondon_textView"
+            android:scaleType="fitXY"
+            android:src="@drawable/riveredi" />
+
+        <TextView
+            android:id="@+id/river_edi_textview"
+            android:layout_width="183dp"
+            android:layout_height="26dp"
+            android:layout_below="@id/river_Edi_imageView"
+            android:text="Edinburgh"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+
     </RelativeLayout>
 
 </FrameLayout>
