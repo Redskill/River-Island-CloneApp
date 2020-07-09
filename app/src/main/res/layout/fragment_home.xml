@@ -25,19 +25,11 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/riverisland" />
 
-        <SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/riverIsland"/>
-
         <ImageView
             android:id="@+id/menClothing"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_below="@+id/search_bar"
-            android:layout_margin="10dp"
+            android:layout_height="160dp"
+            android:layout_below="@id/riverIsland"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
@@ -50,7 +42,7 @@
         <ImageView
             android:id="@+id/womenClothing"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:layout_below="@+id/menClothing"
             android:layout_margin="10dp"
             android:scaleType="fitXY"
@@ -59,7 +51,7 @@
         <ImageView
             android:id="@+id/newArrivals"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:layout_below="@+id/womenClothing"
             android:layout_margin="10dp"
             android:scaleType="fitXY"
