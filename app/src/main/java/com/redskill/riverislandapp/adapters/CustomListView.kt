@@ -9,11 +9,12 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.redskill.riverislandapp.R
+import com.redskill.riverislandapp.domain.Product
 import com.redskill.riverislandapp.domain.ProductInfo
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.listview_layout.view.*
 
-class CustomListView(context : Context,var resources : Int, var productList : ArrayList<ProductInfo>) : ArrayAdapter<ProductInfo>(context, resources,productList) {
+class CustomListView(context : Context,var resources : Int, var productList : List<Product>) : ArrayAdapter<Product>(context, resources,productList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater:LayoutInflater = LayoutInflater.from(context)
@@ -23,12 +24,12 @@ class CustomListView(context : Context,var resources : Int, var productList : Ar
         val productNameTextView :TextView = view.findViewById(R.id.product_textView)
         val costTextView: TextView = view.findViewById(R.id.price_textView)
 
-        var mItem : ProductInfo = productList[position]
+        var mItem : Product = productList[position]
 
 
         Picasso.get().load("http://riverisland.scene7.com/is/image/RiverIsland/${mItem.prodId}_main").into(imageView);
         productNameTextView.text = mItem.name
-        costTextView.text = "£ " + mItem.price.toString()
+        costTextView.text = "£ " + mItem.cost.toString()
 
         return view
     }

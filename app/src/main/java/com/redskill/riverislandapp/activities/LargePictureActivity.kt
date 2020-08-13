@@ -14,7 +14,6 @@ class LargePictureActivity : AppCompatActivity() {
 
         val largePictureImageView = findViewById<ImageView>(R.id.largePicture_imageView2)
         val prodId = intent.getStringExtra("SELECTED_ITEM_PRODID")
-        Picasso.get().load("http://riverisland.scene7.com/is/image/RiverIsland/${prodId}_main").into(largePictureImageView);
-
+        Picasso.get().load("http://riverisland.scene7.com/is/image/RiverIsland/${prodId}_main").into(largePictureImageView)
     }
 }
